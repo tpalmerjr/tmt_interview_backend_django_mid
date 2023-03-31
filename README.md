@@ -7,6 +7,7 @@ Use Python 3.8+.
 
 1. Ensure that you have Docker Desktop installed on your computer
 2. User the docker compose file to set up a local postgres database
+3. Set up a python environment using Python 3.10
 3. Run database.py to add test data to database
 
 
