@@ -5,9 +5,10 @@ For this project, you will complete the following coding challenges. Each challe
 
 Use Python 3.8+.
 
+## Setup (For Linux)
 1. Ensure that you have Docker Desktop installed on your computer
 2. Ensure that you have venv installed globally
-3. From the top level directory of this project (where manage.py is located), type: 
+3. From the top level directory of this project (where manage.py is located), type:
     1. `docker compose --file docker-compose.dev.yml up -d`
     2. `chmod +x start.sh`
     3. `./start.sh`
