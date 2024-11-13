@@ -3,7 +3,9 @@ For this project, you will complete the following coding challenges. Each challe
 
 ## Setup
 
-Use Python 3.8+.
+Use Python 3.11.6
+
+>>NOTE: If you are using Apple Silicon it is recommended to use Python from pyenv
 
 ## Setup (For Linux/Unix terminals)
 1. Ensure that you have Docker Desktop installed on your computer
