@@ -52,7 +52,7 @@ class InventoryListCreateView(APIView):
                 if date is None:
                     raise ValueError
                 qs = qs.filter(created_at__gte=date)
-            except ValueError as e:
+            except ValueError:
                 return Inventory.objects.none()  # Or raise an error
         
         return qs
