@@ -18,6 +18,7 @@ from interview.inventory.serializers import (
 )
 
 
+
 class InventoryListCreateView(APIView):
     queryset = Inventory.objects.all()
     serializer_class = InventorySerializer
@@ -38,11 +39,31 @@ class InventoryListCreateView(APIView):
         return Response(serializer.data, status=201)
 
     def get(self, request: Request, *args, **kwargs) -> Response:
-        serializer = self.serializer_class(self.get_queryset(request), many=True)
+        queryset = self.get_queryset(request)
+        total_count = queryset.count()
 
-        return Response(serializer.data, status=200)
+        # Pagination: limit and offset
+        try:
+            limit = int(request.query_params.get("limit", 3))
+            offset = int(request.query_params.get("offset", 0))
+        except ValueError:
+            return Response({"error": "Invalid limit or offset"}, status=400)
 
-    def get_queryset(self, request):
+        page = queryset[offset:offset + limit]
+        serializer = self.serializer_class(page, many=True)
+
+        base_url = request.build_absolute_uri().split("?")[0]
+        next_offset = offset + limit
+        prev_offset = max(offset - limit, 0)
+
+        return Response({
+            "count": total_count,
+            "next": f"{base_url}?limit={limit}&offset={next_offset}" if next_offset < total_count else None,
+            "previous": f"{base_url}?limit={limit}&offset={prev_offset}" if offset > 0 else None,
+            "results": serializer.data,
+        }, status=200)
+
+    def get_queryset(self, request: Request):
         qs = self.queryset.all()
         created_after = request.query_params.get("created_after")
 
