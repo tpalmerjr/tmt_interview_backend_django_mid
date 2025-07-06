@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from rest_framework import generics
 
 from interview.order.models import Order, OrderTag
 from interview.order.serializers import OrderSerializer, OrderTagSerializer
-from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 class OrderListCreateView(generics.ListCreateAPIView):

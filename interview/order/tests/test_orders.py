@@ -1,8 +1,7 @@
 import pytest
 from django.urls import reverse
 from django.utils.timezone import now, timedelta
-
-from interview.inventory.models import Inventory, InventoryType, InventoryLanguage
+from interview.inventory.models import Inventory, InventoryLanguage, InventoryType
 from interview.order.models import Order, OrderTag
 
 
